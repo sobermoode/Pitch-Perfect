@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import AVFoundation
 
 class RecordSoundsViewController: UIViewController {
     
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var stopButton: UIButton!
+    
+    var audioRecorder: AVAudioRecorder!
     
     override func viewWillAppear( animated: Bool )
     {
@@ -31,13 +34,38 @@ class RecordSoundsViewController: UIViewController {
 
     @IBAction func recordAudio( sender: UIButton )
     {
+        // hide onscreen buttons
         recordButton.enabled = false
         recordingLabel.hidden = false
         stopButton.hidden = false
+        
+        // record user's voice
+        let dirPath = NSSearchPathForDirectoriesInDomains( .DocumentDirectory, .UserDomainMask, true )[ 0 ] as String
+        
+        let currentDateTime = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "ddMMyyyy-HHmmss"
+        let recordingName = formatter.stringFromDate( currentDateTime ) + ".wav"
+        let pathArray = [ dirPath, recordingName ]
+        let filePath = NSURL.fileURLWithPathComponents( pathArray )
+        println( filePath )
+        
+        var session = AVAudioSession.sharedInstance()
+        session.setCategory( AVAudioSessionCategoryPlayAndRecord, error: nil )
+        
+        audioRecorder = AVAudioRecorder( URL: filePath, settings: nil, error: nil )
+        audioRecorder.meteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
     }
     
     @IBAction func stopRecording( sender: UIButton )
     {
+        // stop the current recording
+        var audioSession = AVAudioSession.sharedInstance()
+        audioSession.setActive( false, error: nil )
+        
+        // show buttons
         recordButton.enabled = true
         recordingLabel.hidden = true
         stopButton.hidden = true
