@@ -15,6 +15,7 @@
 		813884CF1AAFD567001F3797 /* Pitch_PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813884CE1AAFD567001F3797 /* Pitch_PerfectTests.swift */; };
 		81BB00AE1AB125CF00154966 /* PlaySoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB00AD1AB125CF00154966 /* PlaySoundsViewController.swift */; };
 		81BB00B01AB13A9900154966 /* movie_quote.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 81BB00AF1AB13A9900154966 /* movie_quote.mp3 */; };
+		81BB00B21AB1607800154966 /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB00B11AB1607800154966 /* RecordedAudio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		813884CE1AAFD567001F3797 /* Pitch_PerfectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_PerfectTests.swift; sourceTree = "<group>"; };
 		81BB00AD1AB125CF00154966 /* PlaySoundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundsViewController.swift; sourceTree = "<group>"; };
 		81BB00AF1AB13A9900154966 /* movie_quote.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = movie_quote.mp3; sourceTree = "<group>"; };
+		81BB00B11AB1607800154966 /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				813884B81AAFD567001F3797 /* AppDelegate.swift */,
 				813884BA1AAFD567001F3797 /* RecordSoundsViewController.swift */,
 				81BB00AD1AB125CF00154966 /* PlaySoundsViewController.swift */,
+				81BB00B11AB1607800154966 /* RecordedAudio.swift */,
 				813884BC1AAFD567001F3797 /* Main.storyboard */,
 				813884BF1AAFD567001F3797 /* Images.xcassets */,
 				813884C11AAFD567001F3797 /* LaunchScreen.xib */,
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81BB00B21AB1607800154966 /* RecordedAudio.swift in Sources */,
 				813884BB1AAFD567001F3797 /* RecordSoundsViewController.swift in Sources */,
 				81BB00AE1AB125CF00154966 /* PlaySoundsViewController.swift in Sources */,
 				813884B91AAFD567001F3797 /* AppDelegate.swift in Sources */,

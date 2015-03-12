@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jkm-hf-GWL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -52,7 +53,6 @@
                                 </state>
                                 <connections>
                                     <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CGS-rN-Avt"/>
-                                    <segue destination="7r4-Nr-oJg" kind="show" id="52b-nt-aZf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -101,6 +101,7 @@
                         <outlet property="recordButton" destination="GFo-Sm-Ji3" id="4PA-NC-ZP8"/>
                         <outlet property="recordingLabel" destination="FOK-e9-tWu" id="aO2-7C-YcD"/>
                         <outlet property="stopButton" destination="iiJ-Cw-95m" id="GQX-je-3oF"/>
+                        <segue destination="7r4-Nr-oJg" kind="show" identifier="showRecordingSegue" id="iQZ-2f-ntv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -116,6 +117,7 @@
                         <viewControllerLayoutGuide type="bottom" id="W8Z-lD-ipl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cer-Py-kJq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMr-OY-hFV">
@@ -163,13 +165,13 @@
                                 <exclude reference="btE-AQ-Km0"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="OaL-KV-EJj"/>
                                 <exclude reference="FqD-A0-QCu"/>
                                 <exclude reference="Wnw-4c-Bkx"/>
                                 <exclude reference="ciB-SF-1SV"/>
-                                <exclude reference="gi8-ir-3x9"/>
                                 <exclude reference="1pu-Nd-eXG"/>
                                 <exclude reference="jEV-Ce-vU0"/>
-                                <exclude reference="OaL-KV-EJj"/>
+                                <exclude reference="gi8-ir-3x9"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -179,13 +181,13 @@
                                 <include reference="btE-AQ-Km0"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="OaL-KV-EJj"/>
                                 <include reference="FqD-A0-QCu"/>
                                 <include reference="Wnw-4c-Bkx"/>
                                 <include reference="ciB-SF-1SV"/>
-                                <include reference="gi8-ir-3x9"/>
                                 <include reference="1pu-Nd-eXG"/>
                                 <include reference="jEV-Ce-vU0"/>
-                                <include reference="OaL-KV-EJj"/>
+                                <include reference="gi8-ir-3x9"/>
                             </mask>
                         </variation>
                     </view>
