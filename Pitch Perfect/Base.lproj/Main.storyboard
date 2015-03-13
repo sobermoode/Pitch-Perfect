@@ -156,10 +156,21 @@
                                     <action selector="playChipmunkAudio:" destination="7r4-Nr-oJg" eventType="touchUpInside" id="r2k-Rx-Nfo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mgi-BJ-T5c">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="darth vader">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playDarthVaderAudio:" destination="7r4-Nr-oJg" eventType="touchUpInside" id="rbm-Xp-fio"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Uhf-9f-7s2" secondAttribute="centerY" constant="-142" id="1pu-Nd-eXG"/>
+                            <constraint firstItem="Mgi-BJ-T5c" firstAttribute="top" secondItem="btE-AQ-Km0" secondAttribute="bottom" constant="43" id="Ee3-5o-b3k"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mgi-BJ-T5c" secondAttribute="trailing" constant="36" id="FUh-L5-B28"/>
                             <constraint firstItem="RMr-OY-hFV" firstAttribute="leading" secondItem="cer-Py-kJq" secondAttribute="leadingMargin" constant="36" id="FqD-A0-QCu"/>
                             <constraint firstItem="W8Z-lD-ipl" firstAttribute="top" secondItem="Uhf-9f-7s2" secondAttribute="bottom" constant="133" id="OaL-KV-EJj"/>
                             <constraint firstItem="NC9-Gz-97D" firstAttribute="leading" secondItem="cer-Py-kJq" secondAttribute="leadingMargin" constant="36" id="UgK-fU-agu"/>
@@ -175,6 +186,7 @@
                                 <exclude reference="Uhf-9f-7s2"/>
                                 <exclude reference="btE-AQ-Km0"/>
                                 <exclude reference="NC9-Gz-97D"/>
+                                <exclude reference="Mgi-BJ-T5c"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="FqD-A0-QCu"/>
@@ -183,6 +195,8 @@
                                 <exclude reference="UgK-fU-agu"/>
                                 <exclude reference="qf2-En-lZr"/>
                                 <exclude reference="gi8-ir-3x9"/>
+                                <exclude reference="Ee3-5o-b3k"/>
+                                <exclude reference="FUh-L5-B28"/>
                                 <exclude reference="1pu-Nd-eXG"/>
                                 <exclude reference="jEV-Ce-vU0"/>
                                 <exclude reference="OaL-KV-EJj"/>
@@ -194,6 +208,7 @@
                                 <include reference="Uhf-9f-7s2"/>
                                 <include reference="btE-AQ-Km0"/>
                                 <include reference="NC9-Gz-97D"/>
+                                <include reference="Mgi-BJ-T5c"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="FqD-A0-QCu"/>
@@ -202,6 +217,8 @@
                                 <include reference="UgK-fU-agu"/>
                                 <include reference="qf2-En-lZr"/>
                                 <include reference="gi8-ir-3x9"/>
+                                <include reference="Ee3-5o-b3k"/>
+                                <include reference="FUh-L5-B28"/>
                                 <include reference="1pu-Nd-eXG"/>
                                 <include reference="jEV-Ce-vU0"/>
                                 <include reference="OaL-KV-EJj"/>
@@ -234,6 +251,7 @@
     </scenes>
     <resources>
         <image name="chipmunk" width="100" height="100"/>
+        <image name="darth vader" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="rabbit" width="100" height="100"/>
         <image name="snail" width="100" height="100"/>

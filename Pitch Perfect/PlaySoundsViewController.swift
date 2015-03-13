@@ -91,6 +91,11 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     
+    @IBAction func playDarthVaderAudio( sender: UIButton )
+    {
+        playAudioWithVariablePitch( -1000 )
+    }
+    
     @IBAction func stopPlayback( sender: UIButton )
     {
         audioPlayer.stop()
