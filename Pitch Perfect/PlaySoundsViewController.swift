@@ -104,6 +104,14 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func stopPlayback( sender: UIButton )
     {
         audioPlayer.stop()
+        
+        // code review TASK 3 - supplemental;
+        // pressing the stop button while the chipmunk or dark vader playback was active
+        // did not stop the playback. this is because the pitch effect is controlled by
+        // the audioEndine, not the audioPlayer. So, the audioEngine needs to be stopped
+        // and reseted to fix this additional bug.
+        audioEngine.stop()
+        audioEngine.reset()
     }
     
     /*
