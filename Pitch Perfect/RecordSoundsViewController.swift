@@ -13,13 +13,17 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingLabel: UILabel!
+    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
     var audioRecorder: AVAudioRecorder!
     var recordedAudio: RecordedAudio!
     
+    var isPaused: Bool = false
+    
     override func viewWillAppear( animated: Bool )
     {
+        pauseButton.hidden = true
         stopButton.hidden = true
     }
     
@@ -38,6 +42,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // hide onscreen buttons
         recordButton.enabled = false
         recordingLabel.hidden = false
+        pauseButton.hidden = false
         stopButton.hidden = false
         
         // record user's voice
@@ -100,6 +105,23 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+        
+    @IBAction func pauseRecording( sender: UIButton )
+    {
+        if( !isPaused )
+        {
+            println( "Pausing the recording..." )
+            audioRecorder.pause()
+            isPaused = true
+        }
+        else
+        {
+            println( "Unpausing the recording..." )
+            audioRecorder.record()
+            isPaused = false
+        }
+    }
+    
     @IBAction func stopRecording( sender: UIButton )
     {
         // stop the current recording
@@ -107,7 +129,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive( false, error: nil )
         
-        // show buttons
+        // hide buttons
         recordButton.enabled = true
         recordingLabel.hidden = true
         stopButton.hidden = true

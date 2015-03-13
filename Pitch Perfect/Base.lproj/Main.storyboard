@@ -55,14 +55,41 @@
                                     <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CGS-rN-Avt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F3-jb-hbZ">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="FjW-ib-qz1"/>
+                                    <constraint firstAttribute="width" constant="50" id="JQ3-LJ-rrH"/>
+                                </constraints>
+                                <state key="normal" image="pause">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FjW-ib-qz1"/>
+                                        <exclude reference="JQ3-LJ-rrH"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="FjW-ib-qz1"/>
+                                        <include reference="JQ3-LJ-rrH"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="pauseRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZyG-e5-f2G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iiJ-Cw-95m" firstAttribute="leading" secondItem="2F3-jb-hbZ" secondAttribute="trailing" constant="8" symbolic="YES" id="7gG-5f-EBW"/>
                             <constraint firstAttribute="centerX" secondItem="GFo-Sm-Ji3" secondAttribute="centerX" id="9OH-Lt-gB5"/>
                             <constraint firstItem="iiJ-Cw-95m" firstAttribute="centerX" secondItem="FOK-e9-tWu" secondAttribute="centerX" id="RWk-0h-x7g"/>
                             <constraint firstItem="FOK-e9-tWu" firstAttribute="top" secondItem="GFo-Sm-Ji3" secondAttribute="bottom" constant="19" id="SsA-z6-QbN"/>
                             <constraint firstItem="FOK-e9-tWu" firstAttribute="centerX" secondItem="GFo-Sm-Ji3" secondAttribute="centerX" id="Swv-gG-VrN"/>
                             <constraint firstAttribute="centerY" secondItem="GFo-Sm-Ji3" secondAttribute="centerY" id="fAy-pf-f1N"/>
+                            <constraint firstItem="iiJ-Cw-95m" firstAttribute="centerY" secondItem="2F3-jb-hbZ" secondAttribute="centerY" id="kE0-rD-6K8"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="iiJ-Cw-95m" secondAttribute="bottom" constant="45" id="t3V-Ir-UPj"/>
                         </constraints>
                         <variation key="default">
@@ -70,14 +97,17 @@
                                 <exclude reference="GFo-Sm-Ji3"/>
                                 <exclude reference="FOK-e9-tWu"/>
                                 <exclude reference="iiJ-Cw-95m"/>
+                                <exclude reference="2F3-jb-hbZ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="t3V-Ir-UPj"/>
-                                <exclude reference="SsA-z6-QbN"/>
-                                <exclude reference="Swv-gG-VrN"/>
                                 <exclude reference="9OH-Lt-gB5"/>
                                 <exclude reference="fAy-pf-f1N"/>
+                                <exclude reference="SsA-z6-QbN"/>
+                                <exclude reference="Swv-gG-VrN"/>
+                                <exclude reference="7gG-5f-EBW"/>
                                 <exclude reference="RWk-0h-x7g"/>
+                                <exclude reference="kE0-rD-6K8"/>
+                                <exclude reference="t3V-Ir-UPj"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -85,19 +115,23 @@
                                 <include reference="GFo-Sm-Ji3"/>
                                 <include reference="FOK-e9-tWu"/>
                                 <include reference="iiJ-Cw-95m"/>
+                                <include reference="2F3-jb-hbZ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="t3V-Ir-UPj"/>
-                                <include reference="SsA-z6-QbN"/>
-                                <include reference="Swv-gG-VrN"/>
                                 <include reference="9OH-Lt-gB5"/>
                                 <include reference="fAy-pf-f1N"/>
+                                <include reference="SsA-z6-QbN"/>
+                                <include reference="Swv-gG-VrN"/>
+                                <include reference="7gG-5f-EBW"/>
                                 <include reference="RWk-0h-x7g"/>
+                                <include reference="kE0-rD-6K8"/>
+                                <include reference="t3V-Ir-UPj"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="k7T-bB-bbR"/>
                     <connections>
+                        <outlet property="pauseButton" destination="2F3-jb-hbZ" id="G9Y-OM-EUL"/>
                         <outlet property="recordButton" destination="GFo-Sm-Ji3" id="4PA-NC-ZP8"/>
                         <outlet property="recordingLabel" destination="FOK-e9-tWu" id="aO2-7C-YcD"/>
                         <outlet property="stopButton" destination="iiJ-Cw-95m" id="GQX-je-3oF"/>
@@ -189,17 +223,17 @@
                                 <exclude reference="Mgi-BJ-T5c"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="OaL-KV-EJj"/>
+                                <exclude reference="Ee3-5o-b3k"/>
+                                <exclude reference="FUh-L5-B28"/>
+                                <exclude reference="UgK-fU-agu"/>
+                                <exclude reference="qf2-En-lZr"/>
                                 <exclude reference="FqD-A0-QCu"/>
                                 <exclude reference="Wnw-4c-Bkx"/>
                                 <exclude reference="ciB-SF-1SV"/>
-                                <exclude reference="UgK-fU-agu"/>
-                                <exclude reference="qf2-En-lZr"/>
-                                <exclude reference="gi8-ir-3x9"/>
-                                <exclude reference="Ee3-5o-b3k"/>
-                                <exclude reference="FUh-L5-B28"/>
                                 <exclude reference="1pu-Nd-eXG"/>
                                 <exclude reference="jEV-Ce-vU0"/>
-                                <exclude reference="OaL-KV-EJj"/>
+                                <exclude reference="gi8-ir-3x9"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -211,17 +245,17 @@
                                 <include reference="Mgi-BJ-T5c"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="OaL-KV-EJj"/>
+                                <include reference="Ee3-5o-b3k"/>
+                                <include reference="FUh-L5-B28"/>
+                                <include reference="UgK-fU-agu"/>
+                                <include reference="qf2-En-lZr"/>
                                 <include reference="FqD-A0-QCu"/>
                                 <include reference="Wnw-4c-Bkx"/>
                                 <include reference="ciB-SF-1SV"/>
-                                <include reference="UgK-fU-agu"/>
-                                <include reference="qf2-En-lZr"/>
-                                <include reference="gi8-ir-3x9"/>
-                                <include reference="Ee3-5o-b3k"/>
-                                <include reference="FUh-L5-B28"/>
                                 <include reference="1pu-Nd-eXG"/>
                                 <include reference="jEV-Ce-vU0"/>
-                                <include reference="OaL-KV-EJj"/>
+                                <include reference="gi8-ir-3x9"/>
                             </mask>
                         </variation>
                     </view>
@@ -253,6 +287,7 @@
         <image name="chipmunk" width="100" height="100"/>
         <image name="darth vader" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
+        <image name="pause" width="256" height="256"/>
         <image name="rabbit" width="100" height="100"/>
         <image name="snail" width="100" height="100"/>
         <image name="stop" width="50" height="50"/>
