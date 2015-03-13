@@ -88,7 +88,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             filePath = savedURL
         }
         
-        
         // set up the audio session
         var session = AVAudioSession.sharedInstance()
         session.setCategory( AVAudioSessionCategoryPlayAndRecord, error: nil )
@@ -109,10 +108,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // check that the recording did successfully finish before doing anything else
         if( flag )
         {
-            // save recorded audio
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathURL = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            // save recorded audio;
+            // using RecordedAudio constructor
+            recordedAudio = RecordedAudio( filePathURL: recorder.url, title: recorder.url.lastPathComponent! )
             
             // perform segue
             /* (i'm assuming that self is required here because this is an AVAudioRecorder function.
