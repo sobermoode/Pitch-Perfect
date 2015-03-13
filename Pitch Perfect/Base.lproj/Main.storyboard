@@ -127,10 +127,11 @@
                                 <exclude reference="klI-sO-Aqr"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="9OH-Lt-gB5"/>
-                                <exclude reference="fAy-pf-f1N"/>
+                                <exclude reference="t3V-Ir-UPj"/>
                                 <exclude reference="SsA-z6-QbN"/>
                                 <exclude reference="Swv-gG-VrN"/>
+                                <exclude reference="9OH-Lt-gB5"/>
+                                <exclude reference="fAy-pf-f1N"/>
                                 <exclude reference="7gG-5f-EBW"/>
                                 <exclude reference="RWk-0h-x7g"/>
                                 <exclude reference="kE0-rD-6K8"/>
@@ -138,7 +139,6 @@
                                 <exclude reference="GM7-e7-tcq"/>
                                 <exclude reference="MpV-q6-s4J"/>
                                 <exclude reference="bLH-df-OIF"/>
-                                <exclude reference="t3V-Ir-UPj"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -150,10 +150,11 @@
                                 <include reference="klI-sO-Aqr"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9OH-Lt-gB5"/>
-                                <include reference="fAy-pf-f1N"/>
+                                <include reference="t3V-Ir-UPj"/>
                                 <include reference="SsA-z6-QbN"/>
                                 <include reference="Swv-gG-VrN"/>
+                                <include reference="9OH-Lt-gB5"/>
+                                <include reference="fAy-pf-f1N"/>
                                 <include reference="7gG-5f-EBW"/>
                                 <include reference="RWk-0h-x7g"/>
                                 <include reference="kE0-rD-6K8"/>
@@ -161,7 +162,6 @@
                                 <include reference="GM7-e7-tcq"/>
                                 <include reference="MpV-q6-s4J"/>
                                 <include reference="bLH-df-OIF"/>
-                                <include reference="t3V-Ir-UPj"/>
                             </mask>
                         </variation>
                     </view>

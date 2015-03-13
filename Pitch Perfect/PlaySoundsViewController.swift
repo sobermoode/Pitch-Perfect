@@ -40,7 +40,12 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func slowDownRecording( sender: UIButton )
     {
+        // code review TASK 3
+        // stop and reset all current playback
         audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
         audioPlayer.rate = 0.5
         audioPlayer.currentTime = 0.0
         
@@ -49,7 +54,12 @@ class PlaySoundsViewController: UIViewController {
 
     @IBAction func accelerateRecording( sender: UIButton )
     {
+        // code review TASK 3
+        // stop and reset all current playback
         audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
         audioPlayer.rate = 2.0
         audioPlayer.currentTime = 0.0
         
@@ -64,6 +74,7 @@ class PlaySoundsViewController: UIViewController {
     // the chipmunk and Darth Vader effects both use this function to create their effects
     func playAudioWithVariablePitch( pitch: Float )
     {
+        // stop and reset all current playback
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
