@@ -58,8 +58,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // to restart a recording, tap the restart button
         recordButton.enabled = false
         
-        // show "recording" label and the other manipulator buttons
-        recordingLabel.hidden = false
+        // code review TASK 4;
+        // instead of un-hiding the label, we are updating the text
+        recordingLabel.text = "recording..."
+        
+        // show  manipulator buttons
         pauseButton.hidden = false
         stopButton.hidden = false
         restartButton.hidden = false
@@ -165,12 +168,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive( false, error: nil )
         
-        // re-enable initial state, so when we return, we can make a new recording
+        // code review TASK 4;
+        // re-enable initial state, so when we return, we don't have to check if
+        // the button and label are disabled and set to "recording."
         recordButton.enabled = true
-        recordingLabel.hidden = true
-        pauseButton.hidden = true
-        stopButton.hidden = true
-        restartButton.hidden = true
+        recordingLabel.text = "Tap to Record"
     }
     
     @IBAction func restartRecording( sender: UIButton )
