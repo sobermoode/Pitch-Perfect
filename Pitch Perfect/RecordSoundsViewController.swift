@@ -11,20 +11,35 @@ import AVFoundation
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
+    // button outlets
+    // EXTRA CREDIT: pause and restart buttons; see associated functions
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var restartButton: UIButton!
     
     var audioRecorder: AVAudioRecorder!
     var recordedAudio: RecordedAudio!
     
-    var isPaused: Bool = false
+    // flags to properly pause/unpause recording and re-use file name when restarting recording
+    var isPaused: Bool!
+    var isRestarting: Bool!
+    
+    // savedURL will save the URL to re-use when restarting the recording
+    var filePath: NSURL!
+    var savedURL: NSURL!
     
     override func viewWillAppear( animated: Bool )
     {
+        // hide buttons that manipulate the in-progress recording
         pauseButton.hidden = true
         stopButton.hidden = true
+        restartButton.hidden = true
+        
+        // falsify isPaused and isRestarting flags
+        isPaused = false
+        isRestarting = false
     }
     
     override func viewDidLoad() {
@@ -39,23 +54,40 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBAction func recordAudio( sender: UIButton )
     {
-        // hide onscreen buttons
+        // disable recording button while a recording is in-progress;
+        // to restart a recording, tap the restart button
         recordButton.enabled = false
+        
+        // show "recording" label and the other manipulator buttons
         recordingLabel.hidden = false
         pauseButton.hidden = false
         stopButton.hidden = false
+        restartButton.hidden = false
         
         // record user's voice
         let dirPath = NSSearchPathForDirectoriesInDomains( .DocumentDirectory, .UserDomainMask, true )[ 0 ] as String
         
-        // create the recording filename
-        let currentDateTime = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "ddMMyyyy-HHmmss"
-        let recordingName = formatter.stringFromDate( currentDateTime ) + ".wav"
-        let pathArray = [ dirPath, recordingName ]
-        let filePath = NSURL.fileURLWithPathComponents( pathArray )
-        println( filePath )
+        // create a new file if we haven't restarted an in-progress recording
+        if( !isRestarting )
+        {
+            // create the recording filename
+            let currentDateTime = NSDate()
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "ddMMyyyy-HHmmss"
+            let recordingName = formatter.stringFromDate( currentDateTime ) + ".wav"
+            let pathArray = [ dirPath, recordingName ]
+            
+            // create the file path and save it so we can re-write the file if the user restarts the recording
+            filePath = NSURL.fileURLWithPathComponents( pathArray )
+            savedURL = filePath
+        }
+        
+        // otherwise, re-use the same file
+        else
+        {
+            filePath = savedURL
+        }
+        
         
         // set up the audio session
         var session = AVAudioSession.sharedInstance()
@@ -74,6 +106,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording( recorder: AVAudioRecorder!, successfully flag: Bool )
     {
+        // check that the recording did successfully finish before doing anything else
         if( flag )
         {
             // save recorded audio
@@ -87,11 +120,16 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             from within the other class's funcion. */
             self.performSegueWithIdentifier( "showRecordingSegue", sender: recordedAudio )
         }
+        
+        // if the recording did not finish successfully, reset the state -
+        // re-enable the microphone button and hide the manipulator buttons
         else
         {
             println( "Recording was not successful =/" )
             recordButton.enabled = true
+            pauseButton.hidden = true
             stopButton.hidden = true
+            restartButton.hidden = true
         }
     }
     
@@ -105,18 +143,18 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-        
+    // EXTRA CREDIT
+    // just check the state of the isPaused flag;
+    // pause() if we are not paused, otherwise, continue record()'ing
     @IBAction func pauseRecording( sender: UIButton )
     {
         if( !isPaused )
         {
-            println( "Pausing the recording..." )
             audioRecorder.pause()
             isPaused = true
         }
         else
         {
-            println( "Unpausing the recording..." )
             audioRecorder.record()
             isPaused = false
         }
@@ -129,10 +167,26 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         var audioSession = AVAudioSession.sharedInstance()
         audioSession.setActive( false, error: nil )
         
-        // hide buttons
+        // re-enable initial state, so when we return, we can make a new recording
         recordButton.enabled = true
         recordingLabel.hidden = true
+        pauseButton.hidden = true
         stopButton.hidden = true
+        restartButton.hidden = true
+    }
+    
+    @IBAction func restartRecording( sender: UIButton )
+    {
+        // set flag
+        isRestarting = true
+        
+        // isPaused might not have been set; need to test against nil, not just a true/false test
+        if( isPaused != nil )
+        {
+            isPaused = false
+        }
+        
+        recordAudio( restartButton )
     }
 }
 

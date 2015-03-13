@@ -12,6 +12,8 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
 
     var audioPlayer: AVAudioPlayer!
+    
+    // this is used to receive the recorded audio from the RecordSoundsViewController
     var recievedAudio: RecordedAudio!
     
     var audioEngine: AVAudioEngine!
@@ -23,6 +25,8 @@ class PlaySoundsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         audioPlayer = AVAudioPlayer( contentsOfURL: recievedAudio.filePathURL, error: nil )
+        
+        // set enableRate to allow slowing down and speeding up the recording audio
         audioPlayer.enableRate = true
         
         audioEngine = AVAudioEngine()
@@ -57,6 +61,7 @@ class PlaySoundsViewController: UIViewController {
         playAudioWithVariablePitch( 1000 )
     }
     
+    // the chipmunk and Darth Vader effects both use this function to create their effects
     func playAudioWithVariablePitch( pitch: Float )
     {
         audioPlayer.stop()
