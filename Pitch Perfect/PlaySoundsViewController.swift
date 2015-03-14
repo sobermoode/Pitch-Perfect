@@ -114,6 +114,36 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
     }
     
+    @IBAction func playReverbEffect( sender: UIButton )
+    {
+        // stop and reset all current playback
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode( audioPlayerNode )
+        
+        // let inputNode = audioEngine.inputNode
+        // let inputFormat = inputNode.inputFormatForBus( 0 )
+        
+        var reverbEffect = AVAudioUnitReverb()
+        reverbEffect.loadFactoryPreset( AVAudioUnitReverbPreset.Cathedral )
+        reverbEffect.wetDryMix = 0.5
+        // reverbEffect.inputFormatForBus(<#bus: AVAudioNodeBus#>)
+        
+        audioEngine.attachNode( reverbEffect )
+        
+        audioEngine.connect( audioPlayerNode, to: reverbEffect, format: nil )
+        audioEngine.connect( reverbEffect, to: audioEngine.outputNode, format: nil )
+        
+        audioPlayerNode.scheduleFile( audioFile, atTime: nil, completionHandler: nil )
+        
+        audioEngine.startAndReturnError( nil )
+        
+        audioPlayerNode.play()
+    }
+    
     /*
     // MARK: - Navigation
 
