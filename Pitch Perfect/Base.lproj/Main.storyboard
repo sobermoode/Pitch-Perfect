@@ -238,10 +238,20 @@
                                     <action selector="playDarthVaderAudio:" destination="7r4-Nr-oJg" eventType="touchUpInside" id="rbm-Xp-fio"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luO-Mi-yWm">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Reverb">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playReverbEffect:" destination="7r4-Nr-oJg" eventType="touchUpInside" id="8bx-k9-68I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Uhf-9f-7s2" secondAttribute="centerY" constant="-142" id="1pu-Nd-eXG"/>
+                            <constraint firstItem="luO-Mi-yWm" firstAttribute="top" secondItem="NC9-Gz-97D" secondAttribute="bottom" constant="8" id="8Ov-4q-CqU"/>
                             <constraint firstItem="Mgi-BJ-T5c" firstAttribute="top" secondItem="btE-AQ-Km0" secondAttribute="bottom" constant="43" id="Ee3-5o-b3k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Mgi-BJ-T5c" secondAttribute="trailing" constant="36" id="FUh-L5-B28"/>
                             <constraint firstItem="RMr-OY-hFV" firstAttribute="leading" secondItem="cer-Py-kJq" secondAttribute="leadingMargin" constant="36" id="FqD-A0-QCu"/>
@@ -249,6 +259,7 @@
                             <constraint firstItem="NC9-Gz-97D" firstAttribute="leading" secondItem="cer-Py-kJq" secondAttribute="leadingMargin" constant="36" id="UgK-fU-agu"/>
                             <constraint firstItem="RMr-OY-hFV" firstAttribute="top" secondItem="9hd-SY-KmS" secondAttribute="bottom" constant="62" id="Wnw-4c-Bkx"/>
                             <constraint firstItem="RMr-OY-hFV" firstAttribute="top" secondItem="btE-AQ-Km0" secondAttribute="top" id="ciB-SF-1SV"/>
+                            <constraint firstItem="luO-Mi-yWm" firstAttribute="leading" secondItem="cer-Py-kJq" secondAttribute="leadingMargin" constant="62" id="ctq-9H-53M"/>
                             <constraint firstAttribute="trailingMargin" secondItem="btE-AQ-Km0" secondAttribute="trailing" constant="36" id="gi8-ir-3x9"/>
                             <constraint firstItem="Uhf-9f-7s2" firstAttribute="leading" secondItem="cer-Py-kJq" secondAttribute="leading" constant="177" id="jEV-Ce-vU0"/>
                             <constraint firstItem="NC9-Gz-97D" firstAttribute="top" secondItem="RMr-OY-hFV" secondAttribute="bottom" constant="43" id="qf2-En-lZr"/>
@@ -260,6 +271,7 @@
                                 <exclude reference="btE-AQ-Km0"/>
                                 <exclude reference="NC9-Gz-97D"/>
                                 <exclude reference="Mgi-BJ-T5c"/>
+                                <exclude reference="luO-Mi-yWm"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="OaL-KV-EJj"/>
@@ -273,6 +285,8 @@
                                 <exclude reference="1pu-Nd-eXG"/>
                                 <exclude reference="jEV-Ce-vU0"/>
                                 <exclude reference="gi8-ir-3x9"/>
+                                <exclude reference="8Ov-4q-CqU"/>
+                                <exclude reference="ctq-9H-53M"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -282,6 +296,7 @@
                                 <include reference="btE-AQ-Km0"/>
                                 <include reference="NC9-Gz-97D"/>
                                 <include reference="Mgi-BJ-T5c"/>
+                                <include reference="luO-Mi-yWm"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="OaL-KV-EJj"/>
@@ -295,6 +310,8 @@
                                 <include reference="1pu-Nd-eXG"/>
                                 <include reference="jEV-Ce-vU0"/>
                                 <include reference="gi8-ir-3x9"/>
+                                <include reference="8Ov-4q-CqU"/>
+                                <include reference="ctq-9H-53M"/>
                             </mask>
                         </variation>
                     </view>

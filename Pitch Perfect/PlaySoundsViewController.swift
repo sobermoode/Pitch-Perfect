@@ -114,6 +114,35 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
     }
     
+    // UDACIOUS!!!
+    // reverb effect; uses same pattern as the other playback buttons
+    @IBAction func playReverbEffect( sender: UIButton )
+    {
+        // stop and reset all current playback
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode( audioPlayerNode )
+        
+        // create the reverb effect and set its properties
+        var reverbEffect = AVAudioUnitReverb()
+        reverbEffect.loadFactoryPreset( AVAudioUnitReverbPreset.Cathedral )
+        reverbEffect.wetDryMix = 42.0
+        
+        audioEngine.attachNode( reverbEffect )
+        
+        audioEngine.connect( audioPlayerNode, to: reverbEffect, format: nil )
+        audioEngine.connect( reverbEffect, to: audioEngine.outputNode, format: nil )
+        
+        audioPlayerNode.scheduleFile( audioFile, atTime: nil, completionHandler: nil )
+        
+        audioEngine.startAndReturnError( nil )
+        
+        audioPlayerNode.play()
+    }
+    
     /*
     // MARK: - Navigation
 
