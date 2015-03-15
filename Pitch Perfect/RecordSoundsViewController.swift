@@ -19,6 +19,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var restartButton: UIButton!
     
+    var audioEngine: AVAudioEngine!
     var audioRecorder: AVAudioRecorder!
     var recordedAudio: RecordedAudio!
     
@@ -45,6 +46,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        audioEngine = AVAudioEngine()
     }
 
     override func didReceiveMemoryWarning() {

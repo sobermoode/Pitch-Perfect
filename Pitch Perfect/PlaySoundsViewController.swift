@@ -114,6 +114,8 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
     }
     
+    // UDACIOUS!!!
+    // reverb effect; uses same pattern as the other playback buttons
     @IBAction func playReverbEffect( sender: UIButton )
     {
         // stop and reset all current playback
@@ -124,13 +126,10 @@ class PlaySoundsViewController: UIViewController {
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode( audioPlayerNode )
         
-        // let inputNode = audioEngine.inputNode
-        // let inputFormat = inputNode.inputFormatForBus( 0 )
-        
+        // create the reverb effect and set its properties
         var reverbEffect = AVAudioUnitReverb()
         reverbEffect.loadFactoryPreset( AVAudioUnitReverbPreset.Cathedral )
-        reverbEffect.wetDryMix = 0.5
-        // reverbEffect.inputFormatForBus(<#bus: AVAudioNodeBus#>)
+        reverbEffect.wetDryMix = 42.0
         
         audioEngine.attachNode( reverbEffect )
         
