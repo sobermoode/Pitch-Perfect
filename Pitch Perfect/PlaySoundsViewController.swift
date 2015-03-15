@@ -143,6 +143,36 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     
+    // UDACIOUS!!!
+    // echo effect; uses same pattern as the other playback buttons
+    @IBAction func playEchoEffect( sender: UIButton )
+    {
+        // stop and reset all current playback
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode( audioPlayerNode )
+        
+        // create the echo effect and set its properties
+        var echoEffect = AVAudioUnitDelay()
+        echoEffect.delayTime = 0.5
+        echoEffect.feedback = 75
+        echoEffect.wetDryMix = 42.0
+        
+        audioEngine.attachNode( echoEffect )
+        
+        audioEngine.connect( audioPlayerNode, to: echoEffect, format: nil )
+        audioEngine.connect( echoEffect, to: audioEngine.outputNode, format: nil )
+        
+        audioPlayerNode.scheduleFile( audioFile, atTime: nil, completionHandler: nil )
+        
+        audioEngine.startAndReturnError( nil )
+        
+        audioPlayerNode.play()
+    }
+    
     /*
     // MARK: - Navigation
 
