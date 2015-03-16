@@ -24,13 +24,13 @@ class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        audioPlayer = AVAudioPlayer( contentsOfURL: recievedAudio.filePathURL, error: nil )
+        audioPlayer = AVAudioPlayer(contentsOfURL: recievedAudio.filePathURL, error: nil)
         
         // set enableRate to allow slowing down and speeding up the recording audio
         audioPlayer.enableRate = true
         
         audioEngine = AVAudioEngine()
-        audioFile = AVAudioFile( forReading: recievedAudio.filePathURL, error: nil )
+        audioFile = AVAudioFile(forReading: recievedAudio.filePathURL, error: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +38,7 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func slowDownRecording( sender: UIButton )
+    @IBAction func slowDownRecording(sender: UIButton)
     {
         // code review TASK 3
         // stop and reset all current playback
@@ -52,7 +52,7 @@ class PlaySoundsViewController: UIViewController {
         audioPlayer.play()
     }
 
-    @IBAction func accelerateRecording( sender: UIButton )
+    @IBAction func accelerateRecording(sender: UIButton)
     {
         // code review TASK 3
         // stop and reset all current playback
@@ -66,13 +66,13 @@ class PlaySoundsViewController: UIViewController {
         audioPlayer.play()
     }
     
-    @IBAction func playChipmunkAudio( sender: UIButton )
+    @IBAction func playChipmunkAudio(sender: UIButton)
     {
-        playAudioWithVariablePitch( 1000 )
+        playAudioWithVariablePitch(1000)
     }
     
     // the chipmunk and Darth Vader effects both use this function to create their effects
-    func playAudioWithVariablePitch( pitch: Float )
+    func playAudioWithVariablePitch(pitch: Float)
     {
         // stop and reset all current playback
         audioPlayer.stop()
@@ -80,28 +80,28 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
         
         var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode( audioPlayerNode )
+        audioEngine.attachNode(audioPlayerNode)
         
         var changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
-        audioEngine.attachNode( changePitchEffect )
+        audioEngine.attachNode(changePitchEffect)
         
-        audioEngine.connect( audioPlayerNode, to: changePitchEffect, format: nil )
-        audioEngine.connect( changePitchEffect, to: audioEngine.outputNode, format: nil )
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile( audioFile, atTime: nil, completionHandler: nil )
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         
-        audioEngine.startAndReturnError( nil )
+        audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
     }
     
-    @IBAction func playDarthVaderAudio( sender: UIButton )
+    @IBAction func playDarthVaderAudio(sender: UIButton)
     {
-        playAudioWithVariablePitch( -1000 )
+        playAudioWithVariablePitch(-1000)
     }
     
-    @IBAction func stopPlayback( sender: UIButton )
+    @IBAction func stopPlayback(sender: UIButton)
     {
         audioPlayer.stop()
         
@@ -116,7 +116,7 @@ class PlaySoundsViewController: UIViewController {
     
     // UDACIOUS!!!
     // reverb effect; uses same pattern as the other playback buttons
-    @IBAction func playReverbEffect( sender: UIButton )
+    @IBAction func playReverbEffect(sender: UIButton)
     {
         // stop and reset all current playback
         audioPlayer.stop()
@@ -124,28 +124,28 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
         
         var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode( audioPlayerNode )
+        audioEngine.attachNode(audioPlayerNode)
         
         // create the reverb effect and set its properties
         var reverbEffect = AVAudioUnitReverb()
-        reverbEffect.loadFactoryPreset( AVAudioUnitReverbPreset.Cathedral )
+        reverbEffect.loadFactoryPreset(AVAudioUnitReverbPreset.Cathedral)
         reverbEffect.wetDryMix = 42.0
         
-        audioEngine.attachNode( reverbEffect )
+        audioEngine.attachNode(reverbEffect)
         
-        audioEngine.connect( audioPlayerNode, to: reverbEffect, format: nil )
-        audioEngine.connect( reverbEffect, to: audioEngine.outputNode, format: nil )
+        audioEngine.connect(audioPlayerNode, to: reverbEffect, format: nil)
+        audioEngine.connect(reverbEffect, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile( audioFile, atTime: nil, completionHandler: nil )
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         
-        audioEngine.startAndReturnError( nil )
+        audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
     }
     
     // UDACIOUS!!!
     // echo effect; uses same pattern as the other playback buttons
-    @IBAction func playEchoEffect( sender: UIButton )
+    @IBAction func playEchoEffect(sender: UIButton)
     {
         // stop and reset all current playback
         audioPlayer.stop()
@@ -153,7 +153,7 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
         
         var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode( audioPlayerNode )
+        audioEngine.attachNode(audioPlayerNode)
         
         // create the echo effect and set its properties
         var echoEffect = AVAudioUnitDelay()
@@ -161,14 +161,14 @@ class PlaySoundsViewController: UIViewController {
         echoEffect.feedback = 75
         echoEffect.wetDryMix = 42.0
         
-        audioEngine.attachNode( echoEffect )
+        audioEngine.attachNode(echoEffect)
         
-        audioEngine.connect( audioPlayerNode, to: echoEffect, format: nil )
-        audioEngine.connect( echoEffect, to: audioEngine.outputNode, format: nil )
+        audioEngine.connect(audioPlayerNode, to: echoEffect, format: nil)
+        audioEngine.connect(echoEffect, to: audioEngine.outputNode, format: nil)
         
-        audioPlayerNode.scheduleFile( audioFile, atTime: nil, completionHandler: nil )
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         
-        audioEngine.startAndReturnError( nil )
+        audioEngine.startAndReturnError(nil)
         
         audioPlayerNode.play()
     }
