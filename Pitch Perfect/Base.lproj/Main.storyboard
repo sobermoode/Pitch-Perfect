@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jkm-hf-GWL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +27,7 @@
                                     <action selector="recordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dvz-be-fH8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-e9-tWu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-e9-tWu">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="81" id="NCO-Aa-MEF">
@@ -234,7 +235,6 @@
                                 <state key="normal" image="reverb">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="widthClass=compact"/>
                                 <connections>
                                     <action selector="playReverbEffect:" destination="7r4-Nr-oJg" eventType="touchUpInside" id="8bx-k9-68I"/>
                                 </connections>
@@ -245,7 +245,6 @@
                                 <state key="normal" image="echo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="widthClass=compact"/>
                                 <connections>
                                     <action selector="playEchoEffect:" destination="7r4-Nr-oJg" eventType="touchUpInside" id="9l4-2f-6ka"/>
                                 </connections>
@@ -288,20 +287,20 @@
                                 <exclude reference="RMr-OY-hFV"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="OQT-9D-p8Q"/>
-                                <exclude reference="jve-i1-LNe"/>
-                                <exclude reference="Gyb-5q-TSW"/>
-                                <exclude reference="OjO-uv-apd"/>
-                                <exclude reference="5rf-Xu-G6o"/>
-                                <exclude reference="hz2-WY-Ca1"/>
                                 <exclude reference="1sl-WG-MoS"/>
                                 <exclude reference="e8R-lQ-Z3G"/>
                                 <exclude reference="p3q-Du-jTK"/>
                                 <exclude reference="uxK-gY-M32"/>
-                                <exclude reference="0tr-bh-HVF"/>
-                                <exclude reference="9Fd-IP-AiH"/>
+                                <exclude reference="OQT-9D-p8Q"/>
+                                <exclude reference="jve-i1-LNe"/>
                                 <exclude reference="4Qm-E6-fCA"/>
                                 <exclude reference="QhD-sD-7sN"/>
+                                <exclude reference="0tr-bh-HVF"/>
+                                <exclude reference="9Fd-IP-AiH"/>
+                                <exclude reference="Gyb-5q-TSW"/>
+                                <exclude reference="OjO-uv-apd"/>
+                                <exclude reference="5rf-Xu-G6o"/>
+                                <exclude reference="hz2-WY-Ca1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -315,20 +314,20 @@
                                 <include reference="RMr-OY-hFV"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="OQT-9D-p8Q"/>
-                                <include reference="jve-i1-LNe"/>
-                                <include reference="Gyb-5q-TSW"/>
-                                <include reference="OjO-uv-apd"/>
-                                <include reference="5rf-Xu-G6o"/>
-                                <include reference="hz2-WY-Ca1"/>
                                 <include reference="1sl-WG-MoS"/>
                                 <include reference="e8R-lQ-Z3G"/>
                                 <include reference="p3q-Du-jTK"/>
                                 <include reference="uxK-gY-M32"/>
-                                <include reference="0tr-bh-HVF"/>
-                                <include reference="9Fd-IP-AiH"/>
+                                <include reference="OQT-9D-p8Q"/>
+                                <include reference="jve-i1-LNe"/>
                                 <include reference="4Qm-E6-fCA"/>
                                 <include reference="QhD-sD-7sN"/>
+                                <include reference="0tr-bh-HVF"/>
+                                <include reference="9Fd-IP-AiH"/>
+                                <include reference="Gyb-5q-TSW"/>
+                                <include reference="OjO-uv-apd"/>
+                                <include reference="5rf-Xu-G6o"/>
+                                <include reference="hz2-WY-Ca1"/>
                             </mask>
                         </variation>
                     </view>
