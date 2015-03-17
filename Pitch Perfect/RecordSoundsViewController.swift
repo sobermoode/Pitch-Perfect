@@ -27,6 +27,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     var isPaused: Bool!
     var isRestarting: Bool!
     
+    var pauseImage: UIImage!
+    var cancelPauseImage: UIImage!
+    
     // savedURL will save the URL to re-use when restarting the recording
     var filePath: NSURL!
     var savedURL: NSURL!
@@ -41,6 +44,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // falsify isPaused and isRestarting flags
         isPaused = false
         isRestarting = false
+        
+        pauseImage = UIImage(named: "pause")
+        cancelPauseImage = UIImage(named: "pause-cancel")
     }
     
     override func viewDidLoad() {
@@ -60,10 +66,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // disable recording button while a recording is in-progress;
         // to restart a recording, tap the restart button
         recordButton.enabled = false
-        
-        // code review TASK 4;
-        // instead of un-hiding the label, we are updating the text
-        recordingLabel.text = "Recording..."
         
         // show  manipulator buttons
         pauseButton.hidden = false
@@ -86,12 +88,20 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             // create the file path and save it so we can re-write the file if the user restarts the recording
             filePath = NSURL.fileURLWithPathComponents(pathArray)
             savedURL = filePath
+            
+            // code review TASK 4;
+            // instead of un-hiding the label, we are updating the text
+            recordingLabel.text = "Recording..."
         }
         
         // otherwise, re-use the same file
         else
         {
             filePath = savedURL
+            
+            // code review TASK 4;
+            // instead of un-hiding the label, we are updating the text
+            recordingLabel.text = "Restarted recording..."
         }
         
         // set up the audio session
@@ -156,6 +166,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         {
             audioRecorder.pause()
             recordingLabel.text = "Paused..."
+            pauseButton.setImage(cancelPauseImage, forState: UIControlState.Normal)
             stopButton.enabled = false;
             restartButton.enabled = false
             isPaused = true
@@ -164,6 +175,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         {
             audioRecorder.record()
             recordingLabel.text = "Recording..."
+            pauseButton.setImage(pauseImage, forState: UIControlState.Normal)
             stopButton.enabled = true
             restartButton.enabled = true
             isPaused = false

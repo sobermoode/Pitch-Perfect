@@ -27,27 +27,6 @@
                                     <action selector="recordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dvz-be-fH8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-e9-tWu">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="NCO-Aa-MEF">
-                                        <variation key="widthClass=compact" constant="117"/>
-                                    </constraint>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
-                                <color key="textColor" red="0.40744341589999999" green="0.45348005470000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="NCO-Aa-MEF"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="NCO-Aa-MEF"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-Cw-95m">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="stop">
@@ -104,6 +83,27 @@
                                     <action selector="restartRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="k9a-2b-YXC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOK-e9-tWu">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="NCO-Aa-MEF">
+                                        <variation key="widthClass=compact" constant="225"/>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
+                                <color key="textColor" red="0.40744341589999999" green="0.45348005470000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NCO-Aa-MEF"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="NCO-Aa-MEF"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -113,7 +113,9 @@
                             <constraint firstItem="klI-sO-Aqr" firstAttribute="bottom" secondItem="iiJ-Cw-95m" secondAttribute="bottom" id="GM7-e7-tcq"/>
                             <constraint firstItem="klI-sO-Aqr" firstAttribute="top" secondItem="2F3-jb-hbZ" secondAttribute="top" id="MpV-q6-s4J"/>
                             <constraint firstItem="iiJ-Cw-95m" firstAttribute="centerX" secondItem="FOK-e9-tWu" secondAttribute="centerX" id="RWk-0h-x7g"/>
-                            <constraint firstItem="FOK-e9-tWu" firstAttribute="top" secondItem="GFo-Sm-Ji3" secondAttribute="bottom" constant="19" id="SsA-z6-QbN"/>
+                            <constraint firstItem="FOK-e9-tWu" firstAttribute="top" secondItem="GFo-Sm-Ji3" secondAttribute="bottom" constant="19" id="SsA-z6-QbN">
+                                <variation key="widthClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstItem="FOK-e9-tWu" firstAttribute="centerX" secondItem="GFo-Sm-Ji3" secondAttribute="centerX" id="Swv-gG-VrN"/>
                             <constraint firstItem="klI-sO-Aqr" firstAttribute="leading" secondItem="iiJ-Cw-95m" secondAttribute="trailing" constant="8" symbolic="YES" id="bLH-df-OIF"/>
                             <constraint firstAttribute="centerY" secondItem="GFo-Sm-Ji3" secondAttribute="centerY" id="fAy-pf-f1N"/>
@@ -123,10 +125,10 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="GFo-Sm-Ji3"/>
-                                <exclude reference="FOK-e9-tWu"/>
                                 <exclude reference="iiJ-Cw-95m"/>
                                 <exclude reference="2F3-jb-hbZ"/>
                                 <exclude reference="klI-sO-Aqr"/>
+                                <exclude reference="FOK-e9-tWu"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="t3V-Ir-UPj"/>
@@ -146,10 +148,10 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="GFo-Sm-Ji3"/>
-                                <include reference="FOK-e9-tWu"/>
                                 <include reference="iiJ-Cw-95m"/>
                                 <include reference="2F3-jb-hbZ"/>
                                 <include reference="klI-sO-Aqr"/>
+                                <include reference="FOK-e9-tWu"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="t3V-Ir-UPj"/>
