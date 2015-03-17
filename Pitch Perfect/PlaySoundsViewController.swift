@@ -19,8 +19,13 @@ class PlaySoundsViewController: UIViewController {
     var audioEngine: AVAudioEngine!
     var audioFile: AVAudioFile!
     
-    override func viewDidLoad()
-    {
+    // options for sound effects
+    let snailSpeed: Float = 0.5
+    let rabbitSpeed: Float = 2.0
+    let chipmunkPitch: Float = 1000
+    let darthVaderPitch: Float = -1000
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -38,67 +43,62 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func slowDownRecording(sender: UIButton)
-    {
         // code review TASK 3
         // stop and reset all current playback
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
         
-        audioPlayer.rate = 0.5
-        audioPlayer.currentTime = 0.0
-        
-        audioPlayer.play()
-    }
-
-    @IBAction func accelerateRecording(sender: UIButton)
-    {
+    // this function handles all playback with effects
+    @IBAction func playAudioWithEffect(sender: UIButton) {
         // code review TASK 3
         // stop and reset all current playback
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
         
-        audioPlayer.rate = 2.0
-        audioPlayer.currentTime = 0.0
-        
-        audioPlayer.play()
-    }
-    
-    @IBAction func playChipmunkAudio(sender: UIButton)
-    {
-        playAudioWithVariablePitch(1000)
-    }
-    
-    // the chipmunk and Darth Vader effects both use this function to create their effects
-    func playAudioWithVariablePitch(pitch: Float)
-    {
-        // stop and reset all current playback
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
-        
-        var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
-        var changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
-        
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-        
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        
-        audioEngine.startAndReturnError(nil)
-        
-        audioPlayerNode.play()
-    }
-    
-    @IBAction func playDarthVaderAudio(sender: UIButton)
-    {
-        playAudioWithVariablePitch(-1000)
+        // determine which effect button was pressed and set all necessary properties
+        if(sender.tag == 1 || sender.tag == 2) {
+            audioPlayer.rate = (sender.tag == 1) ? snailSpeed : rabbitSpeed
+            audioPlayer.currentTime = 0.0
+            audioPlayer.play()
+        }
+        else {
+            var audioPlayerNode = AVAudioPlayerNode()
+            audioEngine.attachNode(audioPlayerNode)
+            
+            // pointer to the configured effect
+            var effectNode: AVAudioNode!
+            
+            if(sender.tag == 3 || sender.tag == 4) {
+                var pitchEffect = AVAudioUnitTimePitch()
+                pitchEffect.pitch = (sender.tag == 3) ? chipmunkPitch : darthVaderPitch
+                effectNode = pitchEffect
+            }
+            else if(sender.tag == 5) {
+                var reverbEffect = AVAudioUnitReverb()
+                reverbEffect.loadFactoryPreset(AVAudioUnitReverbPreset.Cathedral)
+                reverbEffect.wetDryMix = 42.0
+                effectNode = reverbEffect
+            }
+            else if(sender.tag == 6) {
+                var echoEffect = AVAudioUnitDelay()
+                echoEffect.delayTime = 0.5
+                echoEffect.feedback = 75
+                echoEffect.wetDryMix = 42.0
+                effectNode = echoEffect
+            }
+            
+            // connect the effect to the engine
+            audioEngine.attachNode(effectNode)
+            audioEngine.connect(audioPlayerNode, to: effectNode, format: nil)
+            audioEngine.connect(effectNode, to: audioEngine.outputNode, format: nil)
+            
+            // play the recording with applied effect
+            audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+            audioEngine.startAndReturnError(nil)
+            audioPlayerNode.play()
+        }
     }
     
     @IBAction func stopPlayback(sender: UIButton)
@@ -114,63 +114,6 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.reset()
     }
     
-    // UDACIOUS!!!
-    // reverb effect; uses same pattern as the other playback buttons
-    @IBAction func playReverbEffect(sender: UIButton)
-    {
-        // stop and reset all current playback
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
-        
-        var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
-        // create the reverb effect and set its properties
-        var reverbEffect = AVAudioUnitReverb()
-        reverbEffect.loadFactoryPreset(AVAudioUnitReverbPreset.Cathedral)
-        reverbEffect.wetDryMix = 42.0
-        
-        audioEngine.attachNode(reverbEffect)
-        
-        audioEngine.connect(audioPlayerNode, to: reverbEffect, format: nil)
-        audioEngine.connect(reverbEffect, to: audioEngine.outputNode, format: nil)
-        
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        
-        audioEngine.startAndReturnError(nil)
-        
-        audioPlayerNode.play()
-    }
-    
-    // UDACIOUS!!!
-    // echo effect; uses same pattern as the other playback buttons
-    @IBAction func playEchoEffect(sender: UIButton)
-    {
-        // stop and reset all current playback
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
-        
-        var audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
-        
-        // create the echo effect and set its properties
-        var echoEffect = AVAudioUnitDelay()
-        echoEffect.delayTime = 0.5
-        echoEffect.feedback = 75
-        echoEffect.wetDryMix = 42.0
-        
-        audioEngine.attachNode(echoEffect)
-        
-        audioEngine.connect(audioPlayerNode, to: echoEffect, format: nil)
-        audioEngine.connect(echoEffect, to: audioEngine.outputNode, format: nil)
-        
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        
-        audioEngine.startAndReturnError(nil)
-        
-        audioPlayerNode.play()
     }
     
     /*

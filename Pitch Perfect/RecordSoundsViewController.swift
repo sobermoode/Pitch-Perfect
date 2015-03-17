@@ -27,6 +27,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     var isPaused: Bool!
     var isRestarting: Bool!
     
+    // properties to hold the pause button images
     var pauseImage: UIImage!
     var cancelPauseImage: UIImage!
     
@@ -34,8 +35,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     var filePath: NSURL!
     var savedURL: NSURL!
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         // hide buttons that manipulate the in-progress recording
         pauseButton.hidden = true
         stopButton.hidden = true
@@ -45,6 +45,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         isPaused = false
         isRestarting = false
         
+        // set pause button images
         pauseImage = UIImage(named: "pause")
         cancelPauseImage = UIImage(named: "pause-cancel")
     }
@@ -61,8 +62,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func recordAudio(sender: UIButton)
-    {
+    @IBAction func recordAudio(sender: UIButton) {
         // disable recording button while a recording is in-progress;
         // to restart a recording, tap the restart button
         recordButton.enabled = false
@@ -76,8 +76,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         
         // create a new file if we haven't restarted an in-progress recording
-        if(!isRestarting)
-        {
+        if(!isRestarting) {
             // create the recording filename
             let currentDateTime = NSDate()
             let formatter = NSDateFormatter()
@@ -95,8 +94,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
         
         // otherwise, re-use the same file
-        else
-        {
+        else {
             filePath = savedURL
             
             // code review TASK 4;
@@ -119,11 +117,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder.record()
     }
     
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool)
-    {
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         // check that the recording did successfully finish before doing anything else
-        if(flag)
-        {
+        if(flag) {
             // save recorded audio;
             // using RecordedAudio constructor
             recordedAudio = RecordedAudio(filePathURL: recorder.url, title: recorder.url.lastPathComponent!)
@@ -137,8 +133,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
         // if the recording did not finish successfully, reset the state -
         // re-enable the microphone button and hide the manipulator buttons
-        else
-        {
+        else {
             println("Recording was not successful =/")
             recordButton.enabled = true
             pauseButton.hidden = true
@@ -147,10 +142,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if(segue.identifier == "showRecordingSegue")
-        {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "showRecordingSegue") {
             let playSoundsViewController: PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
             let data = sender as RecordedAudio
             playSoundsViewController.recievedAudio = data
@@ -160,8 +153,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     // EXTRA CREDIT
     // just check the state of the isPaused flag;
     // pause() if we are not paused, otherwise, continue record()'ing
-    @IBAction func pauseRecording(sender: UIButton)
-    {
+    @IBAction func pauseRecording(sender: UIButton) {
         if(!isPaused)
         {
             audioRecorder.pause()
@@ -182,8 +174,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    @IBAction func stopRecording(sender: UIButton)
-    {
+    @IBAction func stopRecording(sender: UIButton) {
         // stop the current recording
         audioRecorder.stop()
         var audioSession = AVAudioSession.sharedInstance()
@@ -196,8 +187,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordingLabel.text = "Tap to Record"
     }
     
-    @IBAction func restartRecording(sender: UIButton)
-    {
+    @IBAction func restartRecording(sender: UIButton) {
         // set flag
         isRestarting = true
         
