@@ -42,12 +42,6 @@ class PlaySoundsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-        // code review TASK 3
-        // stop and reset all current playback
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
         
     // this function handles all playback with effects
     @IBAction func playAudioWithEffect(sender: UIButton) {
@@ -112,8 +106,6 @@ class PlaySoundsViewController: UIViewController {
         // and reseted to fix this additional bug.
         audioEngine.stop()
         audioEngine.reset()
-    }
-    
     }
     
     /*
